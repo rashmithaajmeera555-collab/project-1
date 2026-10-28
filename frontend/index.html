@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="E-Commerce and Order Management online shopping project">
+  <title>E-Commerce and Order Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="ShopEase home"><span class="brand-mark">S</span><span>ShopEase<small> E-Commerce & Orders</small></span></a>
+    <form id="search-form" class="search" role="search">
+      <input id="search-input" type="search" placeholder="Search products, brands, categories..." aria-label="Search products">
+      <button type="submit">Search</button>
+    </form>
+    <nav class="header-actions" aria-label="Main navigation">
+      <button id="orders-nav" class="nav-button" type="button">My orders</button>
+      <button id="cart-nav" class="cart-button" type="button">Cart <span id="cart-count">0</span></button>
+      <button id="auth-nav" class="nav-button" type="button">Login</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR EVERYDAY MARKETPLACE</p>
+        <h1>Good finds.<br><span>Great prices.</span></h1>
+        <p>Discover products you love, add them to your cart, and track your orders in one simple place.</p>
+        <a class="primary-link" href="#catalog">Explore products <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="art-circle"></div><div class="art-card card-one">🎧<small>Tech picks</small></div><div class="art-card card-two">👟<small>New styles</small></div><div class="art-card card-three">☕<small>Daily finds</small></div><div class="spark spark-one">✦</div><div class="spark spark-two">✳</div></div>
+    </section>
+
+    <section class="benefits" aria-label="Shopping benefits">
+      <div><span>🚚</span><p><strong>Easy ordering</strong><small>Checkout in a few clicks</small></p></div>
+      <div><span>🔒</span><p><strong>Secure account</strong><small>Your account is protected</small></p></div>
+      <div><span>📦</span><p><strong>Order tracking</strong><small>See your order status</small></p></div>
+    </section>
+
+    <section id="catalog" class="catalog-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE COLLECTION</p><h2>Shop our products</h2><p class="muted">A few good things for your everyday life.</p></div>
+        <label class="sort-control">Sort by
+          <select id="sort-select"><option value="featured">Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name: A–Z</option></select>
+        </label>
+      </div>
+      <div id="category-list" class="category-list" aria-label="Filter by category"></div>
+      <div id="catalog-message" class="notice" role="status"></div>
+      <div id="product-grid" class="product-grid"></div>
+    </section>
+
+    <section id="orders-section" class="content-section hidden">
+      <div class="section-heading"><div><p class="eyebrow">YOUR PURCHASES</p><h2>My orders</h2><p class="muted">Review your order history and status.</p></div><button id="back-shop" class="secondary-button" type="button">← Continue shopping</button></div>
+      <div id="orders-list"></div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">S</span><span>ShopEase</span></a><p>Student project · E-Commerce and Order Management</p><small>Demo store. Product availability and order status are stored in Supabase.</small></footer>
+
+  <div id="overlay" class="overlay hidden"></div>
+  <aside id="cart-drawer" class="drawer hidden" aria-labelledby="cart-title" aria-modal="true" role="dialog">
+    <div class="drawer-heading"><div><p class="eyebrow">YOUR BAG</p><h2 id="cart-title">Shopping cart</h2></div><button class="icon-button" data-close="cart" aria-label="Close cart">×</button></div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer"><div class="total-row"><span>Subtotal</span><strong id="cart-total">₹0.00</strong></div><p class="muted tiny">Shipping and taxes are not included in this student demo.</p><button id="checkout-button" class="full-button" type="button">Place order</button><p id="checkout-message" class="form-message" role="status"></p></div>
+  </aside>
+
+  <section id="auth-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <button class="icon-button modal-close" data-close="auth" aria-label="Close login">×</button>
+    <div class="auth-visual"><span class="brand-mark large">S</span><p class="eyebrow">WELCOME TO SHAPEASE</p><h2>Your next favourite<br>thing is waiting.</h2><p>Sign in to place orders and keep your shopping history together.</p><div class="auth-decoration">🛍️</div></div>
+    <div class="auth-form-panel">
+      <div class="auth-tabs"><button id="login-tab" class="auth-tab active" type="button">Login</button><button id="signup-tab" class="auth-tab" type="button">Create account</button></div>
+      <h2 id="auth-title">Welcome back</h2><p id="auth-subtitle" class="muted">Enter your details to continue.</p>
+      <form id="auth-form">
+        <label id="name-field" class="form-field hidden">Full name<input id="auth-name" autocomplete="name" maxlength="80" placeholder="Your name"></label>
+        <label class="form-field">Email address<input id="auth-email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></label>
+        <label class="form-field">Password<input id="auth-password" type="password" autocomplete="current-password" required minlength="8" maxlength="128" placeholder="At least 8 characters"></label>
+        <button id="auth-submit" class="full-button" type="submit">Login</button>
+        <p id="auth-message" class="form-message" role="status"></p>
+      </form>
+      <p class="tiny muted">Demo project: use your own account. Never reuse a sensitive password.</p>
+    </div>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
